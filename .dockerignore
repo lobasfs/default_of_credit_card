@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+*.md
+docs/
+
+# Tests
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Development
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data (will be mounted)
+data/raw/*
+data/processed/*
+
+# Models (will be mounted)
+models/*.pkl
+models/*.joblib
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# DVC
+.dvc/
+
+# Notebooks
+notebooks/
+*.ipynb
+
+# CI/CD
+.github/
+
+# Docker
+Dockerfile
+docker-compose.yml
+.dockerignore

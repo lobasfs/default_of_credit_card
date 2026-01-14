@@ -1,0 +1,37 @@
+stages:
+  prepare:
+    cmd: python -m src.data.prepare
+    deps:
+      - src/data/load_data.py
+      - src/data/validate.py
+      - src/data/prepare.py
+      - src/features/engineer.py
+      - data/raw/UCI_Credit_Card.csv
+    params:
+      - prepare.test_size
+      - prepare.random_state
+    outs:
+      - data/processed/train.csv
+      - data/processed/test.csv
+      - data/processed/features.yaml
+      - data/processed/data_quality.yaml
+
+  train:
+    cmd: python scripts/train_model.py
+    deps:
+      - src/models/train.py
+      - data/processed/train.csv
+      - data/processed/test.csv
+    params:
+      - train.model_type
+      - train.tune_hyperparameters
+    outs:
+      - models/model.pkl
+    metrics:
+      - reports/metrics.json:
+          cache: false
+    plots:
+      - reports/figures/roc_curve.png:
+          cache: false
+      - reports/figures/confusion_matrix.png:
+          cache: false
